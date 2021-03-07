@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'williamyeh/ansible:ubuntu14.04'
+      image 'willhallonline/ansible:2.9-alpine'
     }
   }
 
