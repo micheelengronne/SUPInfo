@@ -14,11 +14,12 @@ pipeline {
       steps {
         sshagent(credentials : ['MY_SSH_KEY_SECRET_ID']) {
           sh '''
+            current_path="$PWD"
+            cd ../
             ansible-playbook \
-              --inventory-file hosts \
+              --inventory-file "$current_path"/hosts \
               --extra-vars ansible_ssh_common_args='"-o StrictHostKeyChecking=no -o ServerAliveInterval=30"' \
-              --ask-vault-pass \
-              playbook.yml
+              "$current_path"/playbook.yml
           '''
         }
       }
