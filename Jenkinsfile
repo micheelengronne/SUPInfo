@@ -1,4 +1,12 @@
 pipeline {
+  agent {
+    docker {
+      image 'hippolab/ansible'
+      args '-u 0:0'
+      reuseNode true
+    }
+  }
+  
   environment {
     ANSIBLE_VAULT_PASSWORD = credentials('ANSIBLE_VAULT_PASSWORD')
   }
@@ -9,13 +17,6 @@ pipeline {
 
   stages {
     stage('Run Ansible playbook') {
-      agent {
-        docker {
-          image 'hippolab/ansible'
-          args '-u 0:0'
-          reuseNode true
-        }
-      }
       steps {
         sshagent(credentials : ['MY_SSH_KEY_SECRET_ID']) {
           sh '''
