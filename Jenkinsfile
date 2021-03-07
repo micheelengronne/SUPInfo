@@ -2,8 +2,6 @@ pipeline {
   agent {
     docker {
       image 'williamyeh/ansible:ubuntu14.04'
-      args '-u 0:0'
-      reuseNode true
     }
   }
 
