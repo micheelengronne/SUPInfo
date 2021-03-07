@@ -14,7 +14,6 @@ pipeline {
       steps {
         sshagent(credentials : ['MY_SSH_KEY_SECRET_ID']) {
           sh '''
-            ansible-galaxy install -r requirements.yml
             ansible-playbook \
               --inventory-file hosts \
               --extra-vars ansible_ssh_common_args='"-o StrictHostKeyChecking=no -o ServerAliveInterval=30"' \
