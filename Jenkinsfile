@@ -1,8 +1,4 @@
 pipeline {
-  agent {
-    label "docker"
-  }
-
   environment {
     ANSIBLE_VAULT_PASSWORD = credentials('ANSIBLE_VAULT_PASSWORD')
   }
@@ -28,7 +24,7 @@ pipeline {
               --inventory-file hosts \
               --extra-vars ansible_ssh_common_args='"-o StrictHostKeyChecking=no -o ServerAliveInterval=30"' \
               --ask-vault-pass \
-              my_playbook.yml
+              playbook.yml
           '''
         }
       }
